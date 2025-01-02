@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Story } from "@/types/story";
-
-
+import { createSlug } from "@/types/slug";
 
 interface CarddecuProps {
   stories: Story[];
@@ -26,14 +25,14 @@ const Carddecu: React.FC<CarddecuProps> = ({ stories, onSelectStory }) => {
           </div>
         </div>
         <div className={cn("p-0")}>
-          <ul className={cn("grid", "grid-cols-2", "gap-4", "list-none")}>
+          <ul className={cn("grid", "grid-cols-3", "gap-4", "list-none")}>
             {stories.map((story) => (
               <li
                 key={story.id}
                 className={cn(
                   "flex",
                   "items-center",
-                  "space-x-4",
+                  "space-x-1",
                   "p-4",
                   "border",
                   "rounded",
@@ -46,14 +45,22 @@ const Carddecu: React.FC<CarddecuProps> = ({ stories, onSelectStory }) => {
                     <img
                       src={story.urlImage}
                       alt={story.name}
-                      className={cn("w-18", "h-18", "object-cover", "rounded")}
+                      className={cn(
+                        "w-18",
+                        "h-18",
+                        "object-cover",
+                        "rounded",
+                        "transition-transform",
+                        "duration-300",
+                        "hover:scale-105"
+                      )}
                     />
                   )}
                 </div>
                 <div className={cn("basis-3/5")}>
                   <div>
                     <Link
-                      href="/story"
+                      href={`/story/${createSlug(story.name)}`}
                       className={cn(
                         "text-base",
                         "font-semibold",
@@ -74,7 +81,9 @@ const Carddecu: React.FC<CarddecuProps> = ({ stories, onSelectStory }) => {
                   <blockquote
                     className={cn("mt-3", "text-sm", "text-gray-600")}
                   >
-                    <div className={cn("line-clamp-3")}>{story.description}</div>
+                    <div className={cn("line-clamp-3")}>
+                      {story.description}
+                    </div>
                   </blockquote>
                 </div>
               </li>

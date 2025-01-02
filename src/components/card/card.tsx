@@ -45,8 +45,12 @@ const Card: React.FC = () => {
   return (
     <div>
       <div className={cn("flex")}>
-        <Cardtoptuan  stories={stories} onSelectStory={handleSelectStory} />
-        <Carddecu stories={stories} onSelectStory={handleSelectStory} />
+        <div className={cn("basis-1/5")}>
+          <Cardtoptuan stories={stories} onSelectStory={handleSelectStory} />
+        </div>
+        <div className={cn("basis-4/5")}>
+          <Carddecu stories={stories} onSelectStory={handleSelectStory} />
+        </div>
       </div>
     </div>
   );
