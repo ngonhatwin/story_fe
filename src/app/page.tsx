@@ -1,5 +1,5 @@
-import Body from "@/abc/Body/body";
+import Content from "@/components/content/content";
 
 export default function HomePage() {
-  return <Body />;
+  return <Content />;
 }
