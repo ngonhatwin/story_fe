@@ -21,15 +21,14 @@ const Backgr = () => {
   }, [images.length]);
 
   return (
-    <div className={cn("relative", "flex", "justify-center", "h-[400px]")}> {/* Sử dụng tailwindcss và cn */}
-      {/* Hình ảnh chuyển động */}
+    <div className={cn("relative", "flex", "justify-center", "h-[400px]")}>
       <img
         id="img-change"
         className={cn(
           "absolute", // Đảm bảo ảnh luôn ở vị trí cố định trong container
           "h-full",
           fade ? "opacity-100" : "opacity-0", // Điều chỉnh hiệu ứng fade
-          "transition-opacity", 
+          "transition-opacity",
           "duration-1000"
         )}
         src={images[currentImage]}
