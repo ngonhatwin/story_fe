@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import {Story} from "@/types/story";
 import Link from "next/link";
+
 interface CardProps {
   stories: Story[];
   onSelectStory: (story: Story) => void;
@@ -8,7 +9,7 @@ interface CardProps {
 
 const Cardtoptuan: React.FC<CardProps> = ({ stories, onSelectStory }) => {
   return (
-    <div>
+    <div >
       <div className={cn("mt-5", "basis-2/6")}>
         <div className={cn("mb-4", "flex", "justify-between")}>
           <div>

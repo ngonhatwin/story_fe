@@ -1,12 +1,8 @@
 "use client"; // Bắt buộc với React hooks trong Next.js
 
 import React, { createContext, useContext, useState } from "react";
-type Story = {
-    id: any;
-    name: any;
-    urlimage: any;
-    author: any;
-  };
+import { Story } from "@/types/story";
+
   
 // Định nghĩa kiểu dữ liệu cho Context
 interface StoryContextType {
