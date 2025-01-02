@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
+import { LoadingSpinner } from "../../components/LoadingSpinner/LoadingSpinner";
 import { getAllStories } from "@/api/GetAllStory.js";
 import { PagingStory } from "@/api/PagingStory.js";
 import { useStoryContext } from "@/app/storycontext";
