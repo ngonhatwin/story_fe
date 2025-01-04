@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import Backgr from "../backgr/backgr";
 import Card from "../card/card";
 import { useStoryContext } from "@/app/storycontext";
-import StoryDetail from "../pages/story/storydetail";
+import StoryDetail from "../../pages/story/storydetail";
 
 export default function Content() {
   const images = ["./background.jpg"]; // Tên hình ảnh trong thư mục public
