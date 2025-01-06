@@ -60,7 +60,7 @@ const Carddecu: React.FC<CarddecuProps> = ({ stories, onSelectStory }) => {
                 <div className={cn("basis-3/5")}>
                   <div>
                     <Link
-                      href={`/story/${createSlug(story.name)}`}
+                      href={"/story"}
                       className={cn(
                         "text-base",
                         "font-semibold",

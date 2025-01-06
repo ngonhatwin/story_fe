@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import Backgr from "../backgr/backgr";
 import Card from "../card/card";
 import { useStoryContext } from "@/app/storycontext";
-import StoryDetail from "../../pages/story/storydetail";
 
 export default function Content() {
   const images = ["./background.jpg"]; // Tên hình ảnh trong thư mục public
@@ -23,14 +22,8 @@ export default function Content() {
       )}
       style={{ backgroundImage: `url(${images[0]})` }} // Sử dụng hình ảnh từ biến images
     >
-      {!selectedStory ? (
-        <>
-          <Backgr />
-          <Card />
-        </>
-      ) : (
-        <StoryDetail story={selectedStory} />
-      )}
+      <Backgr />
+      <Card />
     </div>
   );
 }
