@@ -7,7 +7,7 @@ import { Story } from "@/types/story";
 // Định nghĩa kiểu dữ liệu cho Context
 interface StoryContextType {
   selectedStory: Story | null;
-  setSelectedStory: (story: Story | null) => void;
+  setSelectedStory: React.Dispatch<React.SetStateAction<Story | null>>;
 }
 
 // Tạo Context
