@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { StoryAndGenre } from "@/types/storyandgenre";
 import { Button } from "../ui/button";
 import { useState } from "react";
-
+import Chapter from "../chapter/chapter";
 const StoryDetail: React.FC<{ story: StoryAndGenre }> = ({ story }) => {
   const [isClamped, setIsClamped] = useState(true);
 
@@ -75,6 +75,12 @@ const StoryDetail: React.FC<{ story: StoryAndGenre }> = ({ story }) => {
           </div>
           <div>
             <Button variant="destructive">Yêu thích</Button>
+          </div>
+          <div>
+            <Button variant="destructive">Đánh giá</Button>
+          </div>
+          <div>
+            <Button variant="destructive">Bình luận</Button>
           </div>
         </div>
       </div>

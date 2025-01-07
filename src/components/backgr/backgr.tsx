@@ -21,7 +21,8 @@ const Backgr = () => {
   }, [images.length]);
 
   return (
-    <div className={cn("relative", "flex", "justify-center", "h-[400px]")}>
+    <div>
+      <div className={cn("relative", "flex", "justify-center", "h-[330px]")}>
       <img
         id="img-change"
         className={cn(
@@ -34,6 +35,7 @@ const Backgr = () => {
         src={images[currentImage]}
         alt="Hình ảnh chuyển động"
       />
+    </div>
     </div>
   );
 };
