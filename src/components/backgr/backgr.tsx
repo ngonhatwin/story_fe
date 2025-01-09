@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils"; // Import hàm cn từ utils
 
 const Backgr = () => {
-  const images = ["./giathien.jpg", "./thanmo.jpg", "./kiemlai.jpg"];
+  const images = ["./kiemlai.jpg"];
   const [currentImage, setCurrentImage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [fade, setFade] = useState(true);
@@ -22,20 +22,32 @@ const Backgr = () => {
 
   return (
     <div>
-      <div className={cn("relative", "flex", "justify-center", "h-[330px]")}>
-      <img
-        id="img-change"
+      <div
         className={cn(
-          "absolute", // Đảm bảo ảnh luôn ở vị trí cố định trong container
-          "h-full",
-          fade ? "opacity-100" : "opacity-0", // Điều chỉnh hiệu ứng fade
-          "transition-opacity",
-          "duration-1000"
+          "relative",
+          "flex",
+          "justify-center",
+          "h-[330px]",
+          "m-3",
+          "rounded-[8px]",
+          "border-[1px]",
+          "border-[#ddd]"
         )}
-        src={images[currentImage]}
-        alt="Hình ảnh chuyển động"
-      />
-    </div>
+      >
+        <img
+          id="img-change"
+          className={cn(
+            "absolute", // Đảm bảo ảnh luôn ở vị trí cố định trong container
+            "h-full",
+            fade ? "opacity-100" : "opacity-0", // Điều chỉnh hiệu ứng fade
+            "transition-opacity",
+            "duration-1000",
+            "p-2"
+          )}
+          src={images[currentImage]}
+          alt="Hình ảnh chuyển động"
+        />
+      </div>
     </div>
   );
 };

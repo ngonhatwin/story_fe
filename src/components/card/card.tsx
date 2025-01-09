@@ -24,7 +24,7 @@ const Card: React.FC = () => {
     const fetchStories = async () => {
       try {
         const pageNumber = 1;
-        const pageSize = 6;
+        const pageSize = 11;
         const response = await PagingStory(pageNumber, pageSize);
         setStories(response.stories);
       } catch (error) {
@@ -45,7 +45,7 @@ const Card: React.FC = () => {
   return (
     <div>
       <div className={cn("flex")}>
-        <div className={cn("basis-1/5")}>
+        <div className={cn("basis-2/6")}>
           <Cardtoptuan stories={stories} onSelectStory={handleSelectStory} />
         </div>
         <div className={cn("basis-4/5")}>

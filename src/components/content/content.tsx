@@ -6,24 +6,29 @@ import Card from "../card/card";
 import { useStoryContext } from "@/app/storycontext";
 
 export default function Content() {
-  const images = ["./background.jpg"]; // Tên hình ảnh trong thư mục public
+  const images = ["./background-kiem-hiep.jpg"]; // Tên hình ảnh trong thư mục public
   const { selectedStory } = useStoryContext();
 
   return (
-    <div
+    <div className={cn(
+      "flex",
+      "justify-center"
+    )}>
+      <div
       className={cn(
         "bg-gray-100",
         "w-full",
         "justify-between",
-        "px-20",
-        "py-10",
         "min-h-screen",
-        `bg-cover bg-center`
+        `bg-cover bg-center`,
+        "opacity-100",
+        "md:max-w-[1140px]",
       )}
       style={{ backgroundImage: `url(${images[0]})` }} // Sử dụng hình ảnh từ biến images
     >
-      <Backgr />
+      <Backgr  />
       <Card />
+    </div>
     </div>
   );
 }

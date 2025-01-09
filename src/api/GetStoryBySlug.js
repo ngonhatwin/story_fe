@@ -1,7 +1,7 @@
 import axios from 'axios'
-export const GetAStory = async (id) => {
-    const response = await axios.post('http://localhost:5250/api/story/get-a-story',{
-        id,
+export const GetStoryBySlug = async (slug) => {
+    const response = await axios.post('http://localhost:5250/api/story/slug',{
+        slug,
     });
     if(response.status === 200)
         {

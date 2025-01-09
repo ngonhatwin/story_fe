@@ -43,15 +43,19 @@ const Chapter: React.FC<ChapterProps> = ({ chap, story }) => {
         </div>
       </div> */}
       <div>
-        <h2 className={cn("text-lg", "font-semibold", "mb-4")}>Danh sách chương</h2>
+        <h2 className={cn("text-lg", "font-semibold", "mb-4")}>
+          Danh sách chương
+        </h2>
         <ul className={cn("list-none", "mb-4")}>
           {currentChapters.map((chapter, index) => (
             <li key={index} className={cn("mb-2")}>
-                <Link
-                href={`/story/${createSlug(story.name)}/${createSlug(chapter.title)}`}
-                >
+              <Link
+                href={`/story/${createSlug(story.name)}/${createSlug(
+                  chapter.title
+                )}`}
+              >
                 <strong>{chapter.title}</strong>: {chapter.name}
-                </Link>
+              </Link>
             </li>
           ))}
         </ul>

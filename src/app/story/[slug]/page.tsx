@@ -5,7 +5,8 @@ import StoryDetail from "@/components/story/storydetail";
 import { GetGenreAStory } from "@/api/GetGenreAStory";
 import { GetAllChapter } from "@/api/GetAllChapter";
 import { StoryAndGenre } from "@/types/storyandgenre";
-import {chapter} from "@/types/chapter"
+import {GetStoryBySlug} from "@/api/GetStoryBySlug"
+import { useRouter } from "next/navigation";
 import Chapter from "@/components/chapter/chapter";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +14,10 @@ const StoryPage = ({ params }: { params: { slug: string } }) => {
   const { selectedStory, setSelectedStory } = useStoryContext();
   const [genreList, setGenreList] = useState<string[]>([]); // State để lưu genre
   const [chapterList, setChapterList] = useState<{ title: string; name: string }[]>([]);
+  const pathname = window.location.pathname; // "/story/kiem-lai
+  const parts = pathname.split("/");
+  const slug = parts[2]; // "kiem-lai"
+  //get Genre
   useEffect(() => {
     const fetchGenre = async () => {
       try {
@@ -30,6 +35,7 @@ const StoryPage = ({ params }: { params: { slug: string } }) => {
     fetchGenre();
   }, [selectedStory?.id]);
 
+  //Get Chapter
   useEffect(() => {
     const fetchChapter = async () => {
       try {
@@ -46,6 +52,24 @@ const StoryPage = ({ params }: { params: { slug: string } }) => {
     };
     fetchChapter();
   }, [selectedStory?.id]);
+
+  //Get By Slug
+  useEffect(() => {
+    const fetchStoryBySlug = async () => {
+      try {
+        if ( slug) {
+          const response = await GetStoryBySlug(slug);
+          console.log(response);
+          setSelectedStory(response);
+        }
+      } catch (error) {
+        const errorMessage =
+          error instanceof Error ? error.message : "Something went wrong";
+        console.error("Failed to fetch chapters:", errorMessage);
+      }
+    };
+    fetchStoryBySlug();
+  }, [slug]);
 
   if (!selectedStory) {
     return <div>No story selected</div>; // Hiển thị thông báo nếu chưa có câu chuyện được chọn
