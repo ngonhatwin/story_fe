@@ -33,9 +33,16 @@ const Cardtoptuan: React.FC<CardProps> = ({ stories, onSelectStory }) => {
             {stories.map((story) => (
               <li
                 key={story.id}
-                className={cn("flex", "items-center", "space-x-4", "m-2")}
+                className={cn(
+                  "flex",
+                  "items-center",
+                  "space-x-4",
+                  "m-2",
+                  "hover:scale-105",
+                  "hover:shadow-lg"
+                )}
               >
-                <div className={cn( "basis-1/5")}>
+                <div className={cn("basis-1/5")}>
                   {story.urlImage && (
                     <img
                       src={story.urlImage}
@@ -47,7 +54,8 @@ const Cardtoptuan: React.FC<CardProps> = ({ stories, onSelectStory }) => {
                         "rounded",
                         "transition-transform",
                         "duration-300",
-                        "hover:scale-110"
+                        "hover:scale-105",
+                        "hover:shadow-lg"
                       )}
                     />
                   )}

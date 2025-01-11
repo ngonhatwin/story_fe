@@ -17,8 +17,7 @@ const Carddecu: React.FC<CarddecuProps> = ({ stories, onSelectStory }) => {
           <div className={cn("m-0")}>
             <h3 className={cn("text-lg", "font-semibold", "mb-4")}>Đề cử</h3>
           </div>
-          <Link 
-          href={"/story/nomination"}>
+          <Link href={"/story/nomination"}>
             <Button variant="link">
               <img
                 className={cn("w-8", "h-8")}
@@ -42,7 +41,10 @@ const Carddecu: React.FC<CarddecuProps> = ({ stories, onSelectStory }) => {
                   "rounded",
                   "shadow-sm",
                   "min-h-200",
-                  "border-gray-300"
+                  "border-gray-300",
+                  "transition-transform",
+                  "hover:scale-105",
+                  "hover:shadow-lg"
                 )}
               >
                 <div className={cn("mr-2", "basis-2/5")}>

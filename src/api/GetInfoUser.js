@@ -1,6 +1,11 @@
 import axios from "axios";
-export const getAllStories = async () => {
-  const response = await axios.get("http://localhost:5250/api/story");
+export const GetInfoUser = async (id) => {
+  const response = await axios.post(
+    "http://localhost:5250/api/user/get-information",
+    {
+      id,
+    }
+  );
   if (response.status === 200) {
     console.log(`Message: ${response.data.message}`);
     return response.data.data;

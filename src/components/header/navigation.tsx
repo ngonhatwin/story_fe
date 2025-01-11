@@ -39,12 +39,12 @@ const HeaderNav = () => {
   }, []);
   return (
     <NavigationMenu className="h-20">
-      <NavigationMenuList className="space-x-10">
+      <NavigationMenuList className="space-x-10 ">
         {NavigationStructure.map((item, idx) => (
           <NavigationMenuItem key={idx}>
             {item.title === "Thể loại" && genreList.length > 0 ? (
               <>
-                <NavigationMenuTrigger className="bg-gray-100 text-md font-normal">
+                <NavigationMenuTrigger className="bg-gray-100 text-md font-normal active:bg-gray-200 focus:outline-none">
                   {item.title}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
