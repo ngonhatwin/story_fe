@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Carddecu from "./carddecu/carddecu";
 import Cardtoptuan from "./cardtop/cardtoptuan";
-import { PagingStory } from "@/api/PagingStory";
+import { PagingStory } from "@/api/story/PagingStory";
 import { Story } from "@/types/story";
 import { cn } from "@/lib/utils"; // Import hàm cn từ utils
 import { useStoryContext } from "@/app/storycontext";

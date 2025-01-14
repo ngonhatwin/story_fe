@@ -22,7 +22,7 @@ export const NavigationStructureUser: NavigationItem[] = [
     items: [
       { name: "Thông tin tài khoản", href: "/user/account-infomation" },
       { name: "Settings", href: "" },
-      { name: "Đăng xuất", href: "" },
+      { name: "Đăng xuất", href: "/auth/logout" },
     ],
   },
 ];

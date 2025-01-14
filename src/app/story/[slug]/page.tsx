@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { useStoryContext } from "../../storycontext";
 import StoryDetail from "@/components/story/storydetail";
-import { GetGenreAStory } from "@/api/GetGenreAStory";
-import { GetAllChapter } from "@/api/GetAllChapter";
+import { GetGenreAStory } from "@/api/story/GetGenreAStory";
+import { GetAllChapter } from "@/api/story/GetAllChapter";
 import { StoryAndGenre } from "@/types/storyandgenre";
-import {GetStoryBySlug} from "@/api/GetStoryBySlug"
+import {GetStoryBySlug} from "@/api/story/GetStoryBySlug"
 import { useRouter } from "next/navigation";
 import Chapter from "@/components/chapter/chapter";
 import { cn } from "@/lib/utils";

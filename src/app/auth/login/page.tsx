@@ -1,9 +1,55 @@
-import LoginComponent from "@/components/login/login";
+"use client";
+import React, { useState } from "react";
+import Cookies from "js-cookie";
+import { useRouter } from 'next/navigation';
+import { HandleLogin } from "@/api/login/HandleLogin";
+import LoginComponent from "@/components/auth/login/login";
+import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
 
 const LoginPage = () => {
-    return(
-        <LoginComponent></LoginComponent>
-    );
-}
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await HandleLogin(email, password);
+      if (response) {
+        const accessToken = response.data.token;
+        const userName = response.data.username;
+        Cookies.set("token", accessToken, { expires: 30 });
+        Cookies.set("username", userName, { expires: 30 });
+        Cookies.set("id", response.data.id, {expires: 30})
+        setSuccess(true);
+        setError("");
+        window.location.href = "/";
+      }
+    } catch (err) {
+      setError("Email or password incorrect!");
+      setSuccess(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return loading ? (
+    <LoadingSpinner />
+  ) : (
+    <LoginComponent
+      email={email}
+      password={password}
+      error={error}
+      success={success}
+      loading={loading}
+      onEmailChange={setEmail}
+      onPasswordChange={setPassword}
+      onSubmit={handleSubmit}
+    />
+  );
+};
 
 export default LoginPage;

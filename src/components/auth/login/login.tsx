@@ -1,56 +1,32 @@
 "use client";
-import React, { useState } from "react";
 import Link from "next/link";
-import Cookies from "js-cookie";
-import { HandleLogin } from "@/api/login/HandleLogin";
 import GoogleLoginButton from "@/components/ui/GoogleLoginButton";
-import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
 
-const LoginComponent = () => {
-  const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+interface LoginComponentProps {
+  email: string;
+  password: string;
+  error: string;
+  success: boolean;
+  loading: boolean;
+  onEmailChange: (value: string) => void;
+  onPasswordChange: (value: string) => void;
+  onSubmit: (e: React.FormEvent) => void;
+}
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    setLoading(true); // Bắt đầu loading
-    console.log("Đang gửi yêu cầu đăng nhập...");
-    try {
-      const response = await HandleLogin(email, password);
-      console.log("Đã nhận được phản hồi từ API:", response);
-      if (response) {
-        const accessToken = response.data.token;
-        const roleResponse = response.data.role;
-        const userName = response.data.username;
-        Cookies.set("token", accessToken, { expires: 7 });
-        Cookies.set("username", userName, { expires: 7 });
-        setSuccess(true);
-        setError("");
-      }
-    } catch (err) {
-      const errorMessage = "Email or password incorrect!";
-      console.error(`Lỗi đăng nhập: ${errorMessage}`, err);
-      setError(errorMessage);
-      setSuccess(false);
-    } finally {
-      setLoading(false); // Kết thúc loading, sẽ luôn chạy sau khi try-catch hoàn thành
-      console.log("Kết thúc quá trình đăng nhập, loading:", loading);
-    }
-  };
-
-  if (loading) {
-    console.log("Hiện spinner vì loading đang ở true");
-    return <LoadingSpinner />;
-  }
-
-  console.log("Hiện form đăng nhập, loading đã là false");
-
+const LoginComponent: React.FC<LoginComponentProps> = ({
+  email,
+  password,
+  error,
+  success,
+  loading,
+  onEmailChange,
+  onPasswordChange,
+  onSubmit,
+}) => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-sm">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmit}>
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -62,10 +38,7 @@ const LoginComponent = () => {
               type="email"
               id="email"
               value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setError("");
-              }}
+              onChange={(e) => onEmailChange(e.target.value)}
               required
               className="w-full px-4 py-2 mt-2 border rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
@@ -81,10 +54,7 @@ const LoginComponent = () => {
               type="password"
               id="password"
               value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setError("");
-              }}
+              onChange={(e) => onPasswordChange(e.target.value)}
               required
               className="w-full px-4 py-2 mt-2 border rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
@@ -107,7 +77,7 @@ const LoginComponent = () => {
           <div className="mt-4 text-center">
             <div>
               <Link
-                href="/register"
+                href="/auth/register"
                 className="text-sm text-blue-500 hover:underline"
               >
                 Don't have an account?
@@ -115,7 +85,7 @@ const LoginComponent = () => {
             </div>
             <div>
               <Link
-                href="/reset-password"
+                href="/auth/reset-password"
                 className="text-sm text-blue-500 hover:underline"
               >
                 Reset password

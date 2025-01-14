@@ -9,14 +9,14 @@ interface NominationProps {
   onSelectStory: (story: Story) => void;
 }
 
-export const Nomination: React.FC<NominationProps> = ({
+export const Hot: React.FC<NominationProps> = ({
   stories,
   onSelectStory,
 }) => {
   return (
-    <div className="flex justify-center relative">
+    <div className="flex justify-center">
       <Container className="bg-neutral-500 rounded-bl-lg rounded-br-lg">
-        <h1 className="text-2xl font-bold">Truyện Đề cử</h1>
+        <h1 className="text-2xl font-bold">Truyện Hot</h1>
 
         <ul className="list-none pl-6">
           {stories.map((story) => (

@@ -13,7 +13,7 @@ import { NavigationStructure } from "./navigation-structure";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
-import { GetAllGenre } from "@/api/GetAllGenre";
+import { GetAllGenre } from "@/api/story/GetAllGenre";
 import { Genre} from "@/types/genre"
 const HeaderNav = () => {
   const [genreList, setGenreList] = useState<Genre[]>([]); // State để lưu genre

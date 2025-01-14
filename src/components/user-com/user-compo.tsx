@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
 import { cn } from "@/lib/utils";
+import { User } from "@/types/user";
 
-const UserCompo = () => {
+const UserCompo: React.FC<{ infouser: User | undefined}> = ({ infouser }) => {
   const images = ["../../backgroundprofile2.jpg"]; // Tên hình ảnh trong thư mục public
 
   return (
@@ -46,7 +47,7 @@ const UserCompo = () => {
                 ></img>
               </div>
               <div className="flex flex-col text-center md:pt-28 md:text-left">
-                <h2 className="text-2xl">Ngô Nhật Win</h2>
+                <h2 className="text-2xl">{infouser?.name}</h2>
               </div>
             </div>
           </div>
@@ -57,12 +58,44 @@ const UserCompo = () => {
         <div className="w-full md:max-w-[1140px]">
           {/* Nội dung */}
           <div className="flex flex-row gap-8">
-            <div className="basis-60">
-              <h2 className="text-2xl text-center md:text-left">
-                Thông tin cơ bản
-              </h2>
+            <div
+              className={cn(
+                "basis-70",
+                "rounded-[8px]",
+                "border-[1px]",
+                "border-[#ddd]",
+                "bg-transparent",
+                "p-[10px]",
+                "md:flex-nowrap",
+                "lg:flex-row"
+              )}
+            >
+              <div className="space-y-2 text-sm text-gray-700">
+                <p className="font-medium">
+                  Email: <span className="font-normal">{infouser?.email}</span>
+                </p>
+                <p className="font-medium">
+                  Ngày sinh:{" "}
+                  <span className="font-normal">{infouser?.dateofBirth}</span>
+                </p>
+                <p className="font-medium">
+                  Giới tính: <span className="font-normal">{infouser?.gender}</span>
+                </p>
+                <p className="font-medium">
+                  Số điện thoại:{" "}
+                  <span className="font-normal">{infouser?.phone}</span>
+                </p>
+                <p className="font-medium">
+                  Tiên thạch:{" "}
+                  <span className="font-normal">{infouser?.tienThach}</span>
+                </p>
+                <p className="font-medium">
+                  Số dư tiên thạch:{" "}
+                  <span className="font-normal">{infouser?.sodutienthach}</span>
+                </p>
+              </div>
             </div>
-            <div >
+            <div>
               <h2 className="text-2xl text-center md:text-left">
                 Truyện sáng tác
               </h2>

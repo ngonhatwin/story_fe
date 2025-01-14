@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { getAllStories } from "@/api/story/GetAllStory";
 import { Story } from "@/types/story";
 import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
-import { Nomination } from "@/components/topic/nomination";
 import { useStoryContext } from "@/app/storycontext";
-const NomiPage = () => {
+import { Hot } from "@/components/topic/hot";
+const HotPage = () => {
   const [loading, setLoading] = useState(true);
   const [stories, setStories] = useState<Story[]>([]); // Sử dụng kiểu Story[]
     const { selectedStory, setSelectedStory } = useStoryContext();
@@ -37,8 +37,8 @@ const NomiPage = () => {
     return <LoadingSpinner />;
   }
   return (
-      <Nomination stories={stories} onSelectStory={handleSelectStory} />
+      <Hot stories={stories} onSelectStory={handleSelectStory} />
   );
 };
 
-export default NomiPage;
+export default HotPage;

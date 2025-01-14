@@ -39,12 +39,12 @@ export const NavigationStructure: {
     },
     {
       title: "Truyện mới",
-      href: "/docs/primitives/progress",
+      href: "/story/lasted",
       icon: Book
     },
     {
       title: "Truyện hot",
-      href: "/docs/primitives/scroll-area",
+      href: "/story/hot",
       icon: Flame
     },
   ]

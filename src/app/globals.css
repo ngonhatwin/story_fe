@@ -70,3 +70,28 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotationBack {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+  .animation-rotation {
+    animation: rotation 1s linear infinite;
+  }
+  .animation-rotation-back {
+    animation: rotationBack 0.5s linear infinite;
+  }
+}

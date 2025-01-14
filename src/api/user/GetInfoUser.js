@@ -1,14 +1,14 @@
 import axios from "axios";
-export const GetInfoUser = async (id) => {
+export const GetInfoUser = async (UserId) => {
   const response = await axios.post(
-    "http://localhost:5250/api/user/get-information",
+    "http://localhost:5250/api/users/get-information",
     {
-      id,
+      UserId,
     }
   );
   if (response.status === 200) {
     console.log(`Message: ${response.data.message}`);
-    return response.data.data;
+    return response.data;
   } else {
     console.log("Something went wrong");
   }

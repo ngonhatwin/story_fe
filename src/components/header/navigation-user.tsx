@@ -1,5 +1,5 @@
 "use client";
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { NavigationStructureUser } from "./navigation-user-structure";
 import {
@@ -11,10 +11,17 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
-import { LogInIcon, BellIcon } from "lucide-react"; // Đảm bảo bạn đã import LogInIcon
+import { LogInIcon } from "lucide-react"; // Đảm bảo bạn đã import LogInIcon
 
 export default function NavigationUser() {
-  const token = Cookies.get("token");
+  const [token, setToken] = useState(null);
+  const [isClient, setIsClient] = useState(false);
+
+useEffect(() => {
+  setIsClient(true); // Đánh dấu rằng đang ở client
+  const tokenFromCookie : any = Cookies.get("token");
+  setToken(tokenFromCookie);
+}, []);
 
   return (
     <div>
@@ -49,9 +56,33 @@ export default function NavigationUser() {
                         </>
                       ) : (
                         // Nếu không có token, hiển thị LogInIcon và không có subitems
-                        <Link href="/auth/login">
+                        <>
                           <LogInIcon size={24} className="h-6 w-6" />
-                        </Link>
+                          <NavigationMenuContent>
+                            <ul className="grid grid-col w-[50px] gap-3 p-4 md:w-[150px] lg:w-[200px]">
+                              <li>
+                                <div>
+                                  <div>
+                                    <Link
+                                      href="/auth/login"
+                                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
+                                    >
+                                      Login
+                                    </Link>
+                                  </div>
+                                  <div>
+                                    <Link
+                                      href="/auth/register"
+                                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md"
+                                    >
+                                      Register
+                                    </Link>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </NavigationMenuContent>
+                        </>
                       )
                     ) : (
                       <item.icon size={24} />

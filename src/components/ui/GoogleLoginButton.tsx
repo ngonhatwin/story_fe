@@ -10,11 +10,11 @@ const GoogleLoginButton = () => {
     const googleToken  = credentialResponse.credential;
     try {
       // Gửi token lên backend
-      const response = await HandleGoogleLogin(googleToken);
+      const response : any = await HandleGoogleLogin(googleToken);
       alert('Đăng nhập thành công!');
       Cookies.set("username",response.data.data.username);
       console.log('Server Response:', response.data);
-    } catch (error) {
+    } catch (error : any) {
       console.error('Login failed:', error.response?.data || error.message);
     }
   };

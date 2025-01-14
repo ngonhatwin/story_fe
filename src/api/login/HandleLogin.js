@@ -1,14 +1,13 @@
 import axios from "axios"
 
 export const HandleLogin = async (email, password) => {
-    const response = await axios.post('http://localhost:5216/api/auth/login', {
+    const response = await axios.post('http://localhost:5250/api/login', {
         email,
         password,
     });
     if (response) {
-        console.log(`Message: ${response.data.data.message}`);
         return response.data; // Return data if successful
     } else {
-        console.log(`Message: ${response.data.data.message}`);
+        console.log(`Message: ${response.data}`);
     }
 }
