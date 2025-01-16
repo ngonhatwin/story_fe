@@ -14,7 +14,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { GetAllGenre } from "@/api/story/GetAllGenre";
-import { Genre} from "@/types/genre"
+import { Genre } from "@/types/genre";
 const HeaderNav = () => {
   const [genreList, setGenreList] = useState<Genre[]>([]); // State để lưu genre
   //GetAllGenre
@@ -26,7 +26,9 @@ const HeaderNav = () => {
           (item: any) => item.name && item.name.trim() !== ""
         );
         const uniqueGenres = Array.from(
-          new Map(filteredResponse.map((item: any) => [item.name, item])).values()
+          new Map(
+            filteredResponse.map((item: any) => [item.name, item])
+          ).values()
         );
         setGenreList(uniqueGenres);
       } catch (error) {
@@ -39,7 +41,7 @@ const HeaderNav = () => {
   }, []);
   return (
     <NavigationMenu className="h-20">
-      <NavigationMenuList className="space-x-10 ">
+      <NavigationMenuList className="space-x-10">
         {NavigationStructure.map((item, idx) => (
           <NavigationMenuItem key={idx}>
             {item.title === "Thể loại" && genreList.length > 0 ? (
@@ -54,9 +56,8 @@ const HeaderNav = () => {
                       <ListItem
                         key={idx}
                         title={genre.name}
-                        href={`/genre/${genre.id}`}
-                      >
-                      </ListItem>
+                        href={`/story/genre/${genre.id}`}
+                      ></ListItem>
                     ))}
                   </ul>
                 </NavigationMenuContent>

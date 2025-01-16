@@ -6,7 +6,6 @@ import { GetGenreAStory } from "@/api/story/GetGenreAStory";
 import { GetAllChapter } from "@/api/story/GetAllChapter";
 import { StoryAndGenre } from "@/types/storyandgenre";
 import {GetStoryBySlug} from "@/api/story/GetStoryBySlug"
-import { useRouter } from "next/navigation";
 import Chapter from "@/components/chapter/chapter";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +19,9 @@ const StoryPage = ({ params }: { params: { slug: string } }) => {
   //get Genre
   useEffect(() => {
     const fetchGenre = async () => {
+      if(!selectedStory?.id){
+        return;
+      }
       try {
         const response = await GetGenreAStory(selectedStory?.id);
         const data: string[] = Array.from(
@@ -29,7 +31,6 @@ const StoryPage = ({ params }: { params: { slug: string } }) => {
       } catch (error) {
         const errorMessage =
           error instanceof Error ? error.message : "Something went wrong";
-        console.error("Failed to fetch stories:", errorMessage);
       }
     };
     fetchGenre();
@@ -42,24 +43,21 @@ const StoryPage = ({ params }: { params: { slug: string } }) => {
         if (selectedStory?.id) {
           const response = await GetAllChapter(selectedStory.id);
           setChapterList(response);
-          console.log(response);
         }
       } catch (error) {
         const errorMessage =
           error instanceof Error ? error.message : "Something went wrong";
-        console.error("Failed to fetch chapters:", errorMessage);
       }
     };
     fetchChapter();
   }, [selectedStory?.id]);
 
-  //Get By Slug
+  //Get Story By Slug
   useEffect(() => {
     const fetchStoryBySlug = async () => {
       try {
         if ( slug) {
           const response = await GetStoryBySlug(slug);
-          console.log(response);
           setSelectedStory(response);
         }
       } catch (error) {
