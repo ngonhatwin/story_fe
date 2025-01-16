@@ -2,21 +2,22 @@
 //lib
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 //component
 import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
 
 const LogoutPage = () => {
   const [loading, setLoading] = useState(true);
+  const route = useRouter();
   useEffect(() => {
     // Xóa cookies
     Cookies.remove("id");
     Cookies.remove("token");
     Cookies.remove("username");
-    // Chuyển hướng sau khi xóa xong
     setTimeout(() => {
       setLoading(false);
-      window.location.href = "/";
-    }, 1000); // Giả lập thời gian xử lý
+      route.push("/");
+    }, 1000); 
   }, []);
 
   return (

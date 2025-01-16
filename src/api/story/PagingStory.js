@@ -6,7 +6,6 @@ export const PagingStory = async (pageNumber, pageSize) => {
     });
     if(response.status === 200)
     {
-        console.log(`Message: ${response.data.message}`);
         return response.data.data;
     }
     else {

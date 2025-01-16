@@ -1,5 +1,4 @@
 import axios from "axios";
-
 export const HandleGoogleLogin = async (idToken) => {
     const response = await axios.post('http://localhost:5216/api/auth/login/google-login',
         { idToken },

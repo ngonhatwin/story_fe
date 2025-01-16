@@ -72,8 +72,9 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
           >
             {loading ? "Đang đăng nhập..." : "Log in"}
           </button>
-          <GoogleLoginButton />
-          {/* <FacebookLoginButton /> */}
+          <div className="mt-2">
+            <GoogleLoginButton />
+          </div>
           <div className="mt-4 text-center">
             <div>
               <Link

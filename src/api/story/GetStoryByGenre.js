@@ -6,7 +6,6 @@ export const GetStoryByGenre = async (pageNumber, pageSize, id) => {
     pageSize
   });
   if (response.status === 200) {
-    console.log(`Message: ${response.data.message}`);
     return response.data.data;
   } else {
     console.log("Something went wrong");

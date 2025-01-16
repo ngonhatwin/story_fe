@@ -1,5 +1,4 @@
 import axios from "axios"
-
 export const HandleRegister = async (Name, Email, Password) => {
     const response = await axios.post('http://localhost:5250/api/users', {
         Name,
