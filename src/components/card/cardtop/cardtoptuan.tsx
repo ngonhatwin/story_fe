@@ -1,6 +1,7 @@
 //lib
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 //types
 import { Story } from "@/types/story";
 import { CreateSlug } from "@/types/slug";
@@ -46,12 +47,12 @@ const Cardtoptuan: React.FC<CardProps> = ({ stories, onSelectStory }) => {
               >
                 <div className={cn("basis-1/5")}>
                   {story.urlImage && (
-                    <img
+                    <Image
                       src={story.urlImage}
                       alt={story.name}
+                      width={64}
+                      height={64}
                       className={cn(
-                        "w-16",
-                        "h-16",
                         "object-cover",
                         "rounded",
                         "transition-transform",

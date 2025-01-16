@@ -1,6 +1,7 @@
 //lib
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 //component
 import { Button } from "@/components/ui/button";
 //types
@@ -22,10 +23,12 @@ const Carddecu: React.FC<CarddecuProps> = ({ stories, onSelectStory }) => {
           </div>
           <Link href={"/story/nomination"}>
             <Button variant="link">
-              <img
+              <Image
                 className={cn("w-8", "h-8")}
-                src="./right-arrow.png"
+                src="/right-arrow.png"
                 alt="Arrow"
+                width={32}
+                height={32}
               />
             </Button>
           </Link>
@@ -52,12 +55,12 @@ const Carddecu: React.FC<CarddecuProps> = ({ stories, onSelectStory }) => {
               >
                 <div className={cn("mr-2", "basis-2/5")}>
                   {story.urlImage && (
-                    <img
+                    <Image
                       src={story.urlImage}
                       alt={story.name}
+                      width={64}
+                      height={64}
                       className={cn(
-                        "w-18",
-                        "h-18",
                         "object-cover",
                         "rounded",
                         "transition-transform",

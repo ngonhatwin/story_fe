@@ -4,8 +4,11 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 //lib
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import Image from "next/image";
 //types
 import { StoryAndGenre } from "@/types/storyandgenre";
+import { Fullscreen } from "lucide-react";
 
 const StoryDetailComponent: React.FC<{ story: StoryAndGenre }> = ({
   story,
@@ -17,10 +20,7 @@ const StoryDetailComponent: React.FC<{ story: StoryAndGenre }> = ({
   };
 
   return (
-    <div className={cn(
-          "flex",
-          "justify-center"
-        )}>
+    <div className={cn("flex", "justify-center")}>
       <div
         className={cn(
           "my-4",
@@ -35,14 +35,16 @@ const StoryDetailComponent: React.FC<{ story: StoryAndGenre }> = ({
           "p-[10px]",
           "md:flex-nowrap",
           "lg:flex-row",
-          "md:max-w-[1140px]",
+          "md:max-w-[1140px]"
         )}
       >
         <div className={cn("w-50", "h-auto", "rounded", "basis-2/6")}>
-          <img
+          <Image
             src={story.urlImage || "/default_image.jpg"}
-            alt={story.name}
-            className={cn("w-100", "h-full", "max-h-96", "mb-4", "rounded")}
+            alt={story.name || "default"}
+            width={96}
+            height={100}
+            className={cn("", "max-h-96", "mb-4", "rounded")}
           />
         </div>
         <div className={cn("basis-4/5")}>
@@ -68,14 +70,13 @@ const StoryDetailComponent: React.FC<{ story: StoryAndGenre }> = ({
           {story.genres && story.genres.length > 0 && (
             <div className={cn("mt-10", "flex", "gap-2", "flex-wrap")}>
               {story.genres.map((genre, index) => (
-                <Button
+                <Link
                   key={index}
-                  variant="outline"
-                  className="border-orange-500"
-                  onClick={() => console.log(`Clicked: ${genre}`)}
+                  href={`/story/genre/${genre.id}`}
+                  className="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300"
                 >
-                  {genre}
-                </Button>
+                  {genre.name}
+                </Link>
               ))}
             </div>
           )}

@@ -81,7 +81,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
                 href="/auth/register"
                 className="text-sm text-blue-500 hover:underline"
               >
-                Don't have an account?
+                Dont have an account?
               </Link>
             </div>
             <div>

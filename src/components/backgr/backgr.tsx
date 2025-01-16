@@ -1,52 +1,37 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { cn } from "@/lib/utils"; 
-
+import Image from "next/image";
+import { useState, useEffect } from "react";
 const Backgr = () => {
-  const images = ["./kiemlai.jpg"];
+  const images = ["/kiemlai.jpg"];
   const [currentImage, setCurrentImage] = useState(0);
   const [fade, setFade] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false); // Bắt đầu mờ dần
+      setFade(false);
       setTimeout(() => {
         setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-        setFade(true); // Hiển thị ảnh mới
-      }, 1000); // Thời gian cho hiệu ứng fade
-    }, 5000); // Chuyển ảnh sau mỗi 5 giây
+        setFade(true);
+      }, 1000);
+    }, 5000);
 
-    return () => clearInterval(interval); // Xóa interval khi unmount
+    return () => clearInterval(interval);
   }, [images.length]);
 
   return (
-    <div>
-      <div
-        className={cn(
-          "relative",
-          "flex",
-          "justify-center",
-          "h-[330px]",
-          "m-3",
-          "rounded-[8px]",
-          "border-[1px]",
-          "border-[#ddd]"
-        )}
-      >
-        <img
-          id="img-change"
-          className={cn(
-            "absolute", // Đảm bảo ảnh luôn ở vị trí cố định trong container
-            "h-full",
-            fade ? "opacity-100" : "opacity-0", // Điều chỉnh hiệu ứng fade
-            "transition-opacity",
-            "duration-1000",
-            "p-2"
-          )}
-          src={images[currentImage]}
-          alt="Hình ảnh chuyển động"
-        />
-      </div>
+    <div
+      className="relative flex justify-center h-[330px] m-3 rounded-[8px] border-[1px] border-[#ddd]"
+    >
+      <Image
+        className={`absolute h-full ${
+          fade ? "opacity-100" : "opacity-0"
+        } transition-opacity duration-1000`}
+        src={images[currentImage]}
+        alt="Hình ảnh chuyển động"
+        objectFit="cover" // Đảm bảo ảnh vừa khung
+        width={400}
+        height={300}
+        priority // Đặt ưu tiên tải cho ảnh đầu tiên
+      />
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { Container } from "../ui/container";
 //lib
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 //types
 import { Story } from "@/types/story";
 import { CreateSlug } from "@/types/slug";
@@ -23,8 +24,8 @@ export const HotComponent: React.FC<HotProps> = ({
     <div className="flex justify-center">
       <Container className="bg-neutral-500 rounded-bl-lg rounded-br-lg">
         <h1 className="text-2xl font-bold">
-          <a href="/">Trang chủ /</a>
-          <a>Truyện hot</a>
+          <Link href="/">Trang chủ /</Link>
+          <p>Truyện hot</p>
         </h1>
 
         <ul className="list-none pl-6">
@@ -51,12 +52,12 @@ export const HotComponent: React.FC<HotProps> = ({
               <div className={cn("flex", "max-h-[244]")}>
                 <div>
                   {story.urlImage && (
-                    <img
+                    <Image
                       src={story.urlImage}
                       alt={story.name}
+                      width={64}
+                      height={64}
                       className={cn(
-                        "w-18",
-                        "h-18",
                         "object-cover",
                         "rounded",
                         "transition-transform",

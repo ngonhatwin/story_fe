@@ -29,7 +29,7 @@ const LoginPage = () => {
         setError("");
         window.location.href = "/";
       }
-    } catch (err) {
+    } catch {
       setError("Email or password incorrect!");
       setSuccess(false);
     } finally {

@@ -14,12 +14,12 @@ import Cookies from "js-cookie";
 import { LogInIcon } from "lucide-react"; // Đảm bảo bạn đã import LogInIcon
 
 export default function NavigationUser() {
-  const [token, setToken] = useState(null);
-  const [isClient, setIsClient] = useState(false);
+  const [token, setToken] = useState<string>();
+  // const [isClient, setIsClient] = useState(false);
 
 useEffect(() => {
-  setIsClient(true); // Đánh dấu rằng đang ở client
-  const tokenFromCookie : any = Cookies.get("token");
+  // setIsClient(true); // Đánh dấu rằng đang ở client
+  const tokenFromCookie  = Cookies.get("token");
   setToken(tokenFromCookie);
 }, []);
 

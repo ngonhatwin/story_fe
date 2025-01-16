@@ -3,6 +3,7 @@ import React from "react";
 //lib
 import { cn } from "@/lib/utils";
 import { User } from "@/types/user";
+import Image from "next/image";
 
 const UserComponent: React.FC<{ infoUser: User | undefined }> = ({
   infoUser,
@@ -41,12 +42,12 @@ const UserComponent: React.FC<{ infoUser: User | undefined }> = ({
           <div className="absolute md:max-w-[1140px] bottom-0 flex w-full translate-y-[46%] justify-center px-5 md:justify-start  ">
             <div className="relative top-6 flex flex-col items-center md:top-0 md:flex-row md:items-start md:gap-5">
               <div className="relative h-[150px] w-[150px] rounded-full border-[4px] border-white shadow-lg md:h-[200px] md:w-[200px]">
-                <img
+                <Image
                   src="../../img-user.png"
                   alt="avatar"
                   sizes="200px"
                   className="rounded-full object-cover"
-                ></img>
+                ></Image>
               </div>
               <div className="flex flex-col text-center md:pt-28 md:text-left">
                 <h2 className="text-2xl">{infoUser?.name}</h2>

@@ -5,11 +5,14 @@ import { useState, useEffect } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { LoadingSpinnerSearch } from "@/components/LoadingSpinner/LoadingSpinnerSearch";
+//lib
+import Image from "next/image";
 //api
 import { SearchStory } from "@/api/story/SearchStory";
 //types
 import { CreateSlug } from "@/types/slug";
 import { Story } from "@/types/story";
+
 const Searching = () => {
   const [searchString, setSearchString] = useState("");
   const [searchResults, setSearchResults] = useState<Story[]>([]);
@@ -67,10 +70,11 @@ const Searching = () => {
                     className="flex m-2 text-sm font-medium leading-none no-underline hover:text-accent-foreground focus:text-accent-foreground"
                   >
                     {item.urlImage && (
-                      <img
+                      <Image
                         src={item.urlImage}
                         alt={item.name}
-                        className="w-20 h-auto"
+                        width={80}
+                        height={80}
                       />
                     )}
                     <div>

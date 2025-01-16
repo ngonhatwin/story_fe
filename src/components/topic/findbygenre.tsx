@@ -4,6 +4,7 @@ import { Container } from "../ui/container";
 //lib
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 //types
 import { CreateSlug } from "@/types/slug";
 import { Story } from "@/types/story";
@@ -23,15 +24,15 @@ export const FindByGenreComponent: React.FC<FindByGenreProps> = ({
     <div className="flex justify-center">
       <Container className="bg-neutral-500 rounded-bl-lg rounded-br-lg">
         <h1 className="text-2xl font-bold">
-          <a href="/">
+          <Link href="/">
             Trang chủ /
-          </a>
-          <a>
+          </Link>
+          <p>
             Thể loại /
-          </a>
-          <a>
+          </p>
+          <p>
             {genreName}
-          </a>
+          </p>
         </h1>
 
         <ul className="list-none pl-6">
@@ -58,12 +59,13 @@ export const FindByGenreComponent: React.FC<FindByGenreProps> = ({
               <div className={cn("flex", "max-h-[244]")}>
                 <div>
                   {story.urlImage && (
-                    <img
+                    <Image
                       src={story.urlImage}
                       alt={story.name}
+                      width={64}
+                      height={64}
                       className={cn(
-                        "w-18",
-                        "h-18",
+
                         "object-cover",
                         "rounded",
                         "transition-transform",

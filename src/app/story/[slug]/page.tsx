@@ -14,10 +14,11 @@ import { GetStoryBySlug } from "@/api/story/GetStoryBySlug";
 //types
 import { StoryAndGenre } from "@/types/storyandgenre";
 import { chapter } from "@/types/chapter";
+import { Genre } from "@/types/genre";
 
 const StoryPage = ({ params }: { params: Promise<{ slug: string }> }) => {
   const { selectedStory, setSelectedStory } = useStoryContext();
-  const [genreList, setGenreList] = useState<string[]>([]); // State để lưu genre
+  const [genreList, setGenreList] = useState<Genre[]>([]); // State để lưu genre
   const [chapterList, setChapterList] = useState<chapter[]>([]);
   const { slug } = use(params);
   //get Genre
@@ -28,13 +29,14 @@ const StoryPage = ({ params }: { params: Promise<{ slug: string }> }) => {
       }
       try {
         const response = await GetGenreAStory(selectedStory?.id);
-        const data: string[] = Array.from(
-          new Set(response.map((item: any) => item.genre))
+        const data: Genre[] = Array.from(
+          new Set(
+            response.map((item: Genre) => ({ name: item.name, id: item.id }))
+          )
         );
         setGenreList(data);
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : "Something went wrong";
+        console.log(error);
       }
     };
     fetchGenre();
@@ -49,8 +51,7 @@ const StoryPage = ({ params }: { params: Promise<{ slug: string }> }) => {
           setChapterList(response);
         }
       } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : "Something went wrong";
+        console.log(error);
       }
     };
     fetchChapter();
@@ -83,7 +84,7 @@ const StoryPage = ({ params }: { params: Promise<{ slug: string }> }) => {
     urlImage: selectedStory.urlImage,
     authorName: selectedStory.authorName,
     description: selectedStory.description,
-    genres: genreList, 
+    genres: genreList,
   };
 
   return (

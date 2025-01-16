@@ -29,11 +29,11 @@ const HeaderNav = () => {
       try {
         const response: Genre[] = await GetAllGenre();
         const filteredResponse = response.filter(
-          (item: any) => item.name && item.name.trim() !== ""
+          (item: Genre) => item.name && item.name.trim() !== ""
         );
         const uniqueGenres = Array.from(
           new Map(
-            filteredResponse.map((item: any) => [item.name, item])
+            filteredResponse.map((item: Genre) => [item.name, item])
           ).values()
         );
         setGenreList(uniqueGenres);

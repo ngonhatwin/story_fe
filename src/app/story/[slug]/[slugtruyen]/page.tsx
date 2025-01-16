@@ -10,7 +10,7 @@ const PageChapter = ({
   params: { slug: string; slugtruyen: string };
 }) => {
   const [content, setContent] = useState<string>(""); // State để lưu nội dung file
-  const [error, setError] = useState<string | null>(null); // State để lưu lỗi nếu có
+  const [error] = useState<string | null>(null); // State để lưu lỗi nếu có
 
   const s3 = new AWS.S3({
     endpoint:

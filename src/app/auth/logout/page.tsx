@@ -18,7 +18,7 @@ const LogoutPage = () => {
       setLoading(false);
       route.push("/");
     }, 1000); 
-  }, []);
+  }, [route]);
 
   return (
     <div className="flex items-center justify-center min-h-screen">
