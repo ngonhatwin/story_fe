@@ -1,4 +1,4 @@
-import { LucideIcon, BellIcon, UserIcon, LogInIcon } from "lucide-react";
+import { LucideIcon, BellIcon, UserIcon } from "lucide-react";
 
 // Định nghĩa kiểu cho các mục con
 interface NavigationSubItem {

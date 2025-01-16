@@ -1,6 +1,9 @@
 "use client";
+//Page đọc truyện
+//lib
 import React, { useState, useEffect } from "react";
 import AWS from "aws-sdk";
+
 const PageChapter = ({
   params,
 }: {
@@ -25,11 +28,13 @@ const PageChapter = ({
           Bucket: "storgetruyen", // Tên bucket của bạn
           Key: "noi_dung.txt", // Tên file trong bucket
         };
-
         const data = await s3.getObject(params).promise();
-        const text = new TextDecoder("utf-8").decode(data.Body);
-        setContent(text);
-        console.log(text);
+        if (data.Body) {
+          const text = new TextDecoder("utf-8").decode(data.Body as Buffer);
+          setContent(text);
+        } else {
+          throw new Error("Data body is undefined or null");
+        }
       } catch (error) {
         console.error("Error fetching file:", error);
       }

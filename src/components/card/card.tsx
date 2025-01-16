@@ -1,22 +1,25 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+//component
 import Carddecu from "./carddecu/carddecu";
 import Cardtoptuan from "./cardtop/cardtoptuan";
-import { PagingStory } from "@/api/story/PagingStory";
-import { Story } from "@/types/story";
-import { cn } from "@/lib/utils"; // Import hàm cn từ utils
-import { useStoryContext } from "@/app/storycontext";
 import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
+import { useStoryContext } from "@/app/storycontext";
+//api
+import { PagingStory } from "@/api/story/PagingStory";
+//types
+import { Story } from "@/types/story";
 
 const Card: React.FC = () => {
-  const { selectedStory, setSelectedStory } = useStoryContext();
-  const [stories, setStories] = useState<Story[]>([]); // Sử dụng kiểu Story[]
+  const { setSelectedStory } = useStoryContext();
+  const [stories, setStories] = useState<Story[]>([]);
   const [loading, setLoading] = useState(true);
   const handleSelectStory = (story: Story) => {
     setSelectedStory({
       ...story,
-      urlImage: story.urlImage || "default_image.jpg", // Cung cấp giá trị mặc định nếu thiếu
-      authorName: story.authorName || "Unknown", // Cung cấp giá trị mặc định nếu thiếu
+      urlImage: story.urlImage || "default_image.jpg",
+      authorName: story.authorName || "Unknown",
     });
   };
 

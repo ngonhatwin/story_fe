@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
 import { cn } from "@/lib/utils";
+//component
 import Backgr from "../backgr/backgr";
 import Card from "../card/card";
-import { useStoryContext } from "@/app/storycontext";
 
 export default function Content() {
   const images = ["../../background-kiem-hiep.jpg"]; // Tên hình ảnh trong thư mục public
-  const { selectedStory } = useStoryContext();
 
   return (
     <div className={cn(

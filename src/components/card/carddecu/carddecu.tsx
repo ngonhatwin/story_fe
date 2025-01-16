@@ -1,8 +1,11 @@
+//lib
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Story } from "@/types/story";
-import { createSlug } from "@/types/slug";
+//component
 import { Button } from "@/components/ui/button";
+//types
+import { Story } from "@/types/story";
+import { CreateSlug } from "@/types/slug";
 
 interface CarddecuProps {
   stories: Story[];
@@ -67,7 +70,7 @@ const Carddecu: React.FC<CarddecuProps> = ({ stories, onSelectStory }) => {
                 <div className={cn("basis-3/5")}>
                   <div className={cn("min-h-3", "items-center")}>
                     <Link
-                      href={`/story/${createSlug(story.name)}`}
+                      href={`/story/${CreateSlug(story.name)}`}
                       className={cn(
                         "items-center",
                         "text-base",

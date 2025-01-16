@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { createSlug } from "@/types/slug";
+//types
+import { CreateSlug } from "@/types/slug";
 import { Story } from "@/types/story";
 
 interface ChapterProps {
@@ -10,7 +11,7 @@ interface ChapterProps {
   story: Story;
 }
 
-const Chapter: React.FC<ChapterProps> = ({ chap, story }) => {
+const ChapterComponent: React.FC<ChapterProps> = ({ chap, story }) => {
   const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
   const chaptersPerPage = 10; // Số chương mỗi trang
 
@@ -37,11 +38,6 @@ const Chapter: React.FC<ChapterProps> = ({ chap, story }) => {
 
   return (
     <div className={cn("w-full", "mt-4")}>
-      {/* <div className={cn("container")}>
-        <div>
-            <h2>Chương mới nhất</h2>
-        </div>
-      </div> */}
       <div>
         <h2 className={cn("text-lg", "font-semibold", "mb-4")}>
           Danh sách chương
@@ -50,7 +46,7 @@ const Chapter: React.FC<ChapterProps> = ({ chap, story }) => {
           {currentChapters.map((chapter, index) => (
             <li key={index} className={cn("mb-2")}>
               <Link
-                href={`/story/${createSlug(story.name)}/${createSlug(
+                href={`/story/${CreateSlug(story.name)}/${CreateSlug(
                   chapter.title
                 )}`}
               >
@@ -94,4 +90,4 @@ const Chapter: React.FC<ChapterProps> = ({ chap, story }) => {
   );
 };
 
-export default Chapter;
+export default ChapterComponent;

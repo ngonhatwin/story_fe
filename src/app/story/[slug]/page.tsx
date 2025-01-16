@@ -1,25 +1,29 @@
 "use client";
+//Page thông tin từng truyện
 import React, { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import { use } from "react";
+//component
 import { useStoryContext } from "../../storycontext";
-import StoryDetail from "@/components/story/storydetail";
+import ChapterComponent from "@/components/chapter/chapter";
+import StoryDetailComponent from "@/components/story/storydetail";
+//api
 import { GetGenreAStory } from "@/api/story/GetGenreAStory";
 import { GetAllChapter } from "@/api/story/GetAllChapter";
+import { GetStoryBySlug } from "@/api/story/GetStoryBySlug";
+//types
 import { StoryAndGenre } from "@/types/storyandgenre";
-import {GetStoryBySlug} from "@/api/story/GetStoryBySlug"
-import Chapter from "@/components/chapter/chapter";
-import { cn } from "@/lib/utils";
+import { chapter } from "@/types/chapter";
 
-const StoryPage = ({ params }: { params: { slug: string } }) => {
+const StoryPage = ({ params }: { params: Promise<{ slug: string }> }) => {
   const { selectedStory, setSelectedStory } = useStoryContext();
   const [genreList, setGenreList] = useState<string[]>([]); // State để lưu genre
-  const [chapterList, setChapterList] = useState<{ title: string; name: string }[]>([]);
-  const pathname = window.location.pathname; // "/story/kiem-lai
-  const parts = pathname.split("/");
-  const slug = parts[2]; // "kiem-lai"
+  const [chapterList, setChapterList] = useState<chapter[]>([]);
+  const { slug } = use(params);
   //get Genre
   useEffect(() => {
     const fetchGenre = async () => {
-      if(!selectedStory?.id){
+      if (!selectedStory?.id) {
         return;
       }
       try {
@@ -56,7 +60,7 @@ const StoryPage = ({ params }: { params: { slug: string } }) => {
   useEffect(() => {
     const fetchStoryBySlug = async () => {
       try {
-        if ( slug) {
+        if (slug) {
           const response = await GetStoryBySlug(slug);
           setSelectedStory(response);
         }
@@ -79,18 +83,16 @@ const StoryPage = ({ params }: { params: { slug: string } }) => {
     urlImage: selectedStory.urlImage,
     authorName: selectedStory.authorName,
     description: selectedStory.description,
-    genres: genreList, // Thêm danh sách thể loại
+    genres: genreList, 
   };
-
-
 
   return (
     <div className={cn("flex", "justify-self-center", "flex-col")}>
       <div className={cn("container")}>
-        <StoryDetail story={storyWithGenre} />
+        <StoryDetailComponent story={storyWithGenre} />
       </div>
       <div>
-        <Chapter chap={chapterList} story={selectedStory} />
+        <ChapterComponent chap={chapterList} story={selectedStory} />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
-
 import * as React from "react";
+import { useEffect } from "react";
+//component
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,14 +10,19 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { useGenreContext } from "@/app/genrecontext";
 import { NavigationStructure } from "./navigation-structure";
-import Link from "next/link";
+//lib
 import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
+import Link from "next/link";
+//api
 import { GetAllGenre } from "@/api/story/GetAllGenre";
+//types
 import { Genre } from "@/types/genre";
+
 const HeaderNav = () => {
-  const [genreList, setGenreList] = useState<Genre[]>([]); // State để lưu genre
+  // State để lưu genre
+  const { genreList, setGenreList } = useGenreContext();
   //GetAllGenre
   useEffect(() => {
     const fetchAllGenre = async () => {

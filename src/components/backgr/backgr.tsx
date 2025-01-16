@@ -1,11 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { cn } from "@/lib/utils"; // Import hàm cn từ utils
+import { cn } from "@/lib/utils"; 
 
 const Backgr = () => {
   const images = ["./kiemlai.jpg"];
   const [currentImage, setCurrentImage] = useState(0);
-  const [loading, setLoading] = useState(true);
   const [fade, setFade] = useState(true);
 
   useEffect(() => {

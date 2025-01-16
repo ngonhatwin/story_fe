@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Cookies from "js-cookie";
 import { NavigationStructureUser } from "./navigation-user-structure";
 import {
   NavigationMenu,
@@ -11,6 +10,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
+import Cookies from "js-cookie";
 import { LogInIcon } from "lucide-react"; // Đảm bảo bạn đã import LogInIcon
 
 export default function NavigationUser() {

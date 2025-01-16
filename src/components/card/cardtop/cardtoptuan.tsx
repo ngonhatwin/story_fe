@@ -1,7 +1,9 @@
+//lib
 import { cn } from "@/lib/utils";
-import { Story } from "@/types/story";
 import Link from "next/link";
-import { createSlug } from "@/types/slug";
+//types
+import { Story } from "@/types/story";
+import { CreateSlug } from "@/types/slug";
 
 interface CardProps {
   stories: Story[];
@@ -63,7 +65,7 @@ const Cardtoptuan: React.FC<CardProps> = ({ stories, onSelectStory }) => {
                 <div id="content-toptuan" className={cn("basis-4/5")}>
                   <div className={cn("line-clamp-1")}>
                     <Link
-                      href={`/story/${createSlug(story.name)}`}
+                      href={`/story/${CreateSlug(story.name)}`}
                       className={cn(
                         "text-base",
                         "font-semibold",

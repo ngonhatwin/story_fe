@@ -1,11 +1,13 @@
 "use client";
 import React from "react";
+//lib
 import { cn } from "@/lib/utils";
 import { User } from "@/types/user";
 
-const UserCompo: React.FC<{ infouser: User | undefined}> = ({ infouser }) => {
+const UserComponent: React.FC<{ infoUser: User | undefined }> = ({
+  infoUser,
+}) => {
   const images = ["../../backgroundprofile2.jpg"]; // Tên hình ảnh trong thư mục public
-
   return (
     <div>
       <div className="relative h-[400px] w-full ">
@@ -47,7 +49,7 @@ const UserCompo: React.FC<{ infouser: User | undefined}> = ({ infouser }) => {
                 ></img>
               </div>
               <div className="flex flex-col text-center md:pt-28 md:text-left">
-                <h2 className="text-2xl">{infouser?.name}</h2>
+                <h2 className="text-2xl">{infoUser?.name}</h2>
               </div>
             </div>
           </div>
@@ -72,26 +74,27 @@ const UserCompo: React.FC<{ infouser: User | undefined}> = ({ infouser }) => {
             >
               <div className="space-y-2 text-sm text-gray-700">
                 <p className="font-medium">
-                  Email: <span className="font-normal">{infouser?.email}</span>
+                  Email: <span className="font-normal">{infoUser?.email}</span>
                 </p>
                 <p className="font-medium">
                   Ngày sinh:{" "}
-                  <span className="font-normal">{infouser?.dateofBirth}</span>
+                  <span className="font-normal">{infoUser?.dateofBirth}</span>
                 </p>
                 <p className="font-medium">
-                  Giới tính: <span className="font-normal">{infouser?.gender}</span>
+                  Giới tính:{" "}
+                  <span className="font-normal">{infoUser?.gender}</span>
                 </p>
                 <p className="font-medium">
                   Số điện thoại:{" "}
-                  <span className="font-normal">{infouser?.phone}</span>
+                  <span className="font-normal">{infoUser?.phone}</span>
                 </p>
                 <p className="font-medium">
                   Tiên thạch:{" "}
-                  <span className="font-normal">{infouser?.tienThach}</span>
+                  <span className="font-normal">{infoUser?.tienThach}</span>
                 </p>
                 <p className="font-medium">
                   Số dư tiên thạch:{" "}
-                  <span className="font-normal">{infouser?.sodutienthach}</span>
+                  <span className="font-normal">{infoUser?.sodutienthach}</span>
                 </p>
               </div>
             </div>
@@ -107,4 +110,4 @@ const UserCompo: React.FC<{ infouser: User | undefined}> = ({ infouser }) => {
   );
 };
 
-export default UserCompo;
+export default UserComponent;

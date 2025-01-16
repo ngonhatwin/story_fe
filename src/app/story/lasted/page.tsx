@@ -1,21 +1,25 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { getAllStories } from "@/api/story/GetAllStory";
-import { Story } from "@/types/story";
+//component
 import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
 import { useStoryContext } from "@/app/storycontext";
-import { Lasted } from "@/components/topic/lasted";
+import { LastedComponent } from "@/components/topic/lasted";
+//api
+import { getAllStories } from "@/api/story/GetAllStory";
+//types
+import { Story } from "@/types/story";
 const LastedPage = () => {
   const [loading, setLoading] = useState(true);
   const [stories, setStories] = useState<Story[]>([]); // Sử dụng kiểu Story[]
-    const { selectedStory, setSelectedStory } = useStoryContext();
-       const handleSelectStory = (story: Story) => {
-          setSelectedStory({
-            ...story,
-            urlImage: story.urlImage || "default_image.jpg", // Cung cấp giá trị mặc định nếu thiếu
-            authorName: story.authorName || "Unknown", // Cung cấp giá trị mặc định nếu thiếu
-          });
-        };
+  const { setSelectedStory } = useStoryContext();
+  const handleSelectStory = (story: Story) => {
+    setSelectedStory({
+      ...story,
+      urlImage: story.urlImage || "default_image.jpg", // Cung cấp giá trị mặc định nếu thiếu
+      authorName: story.authorName || "Unknown", // Cung cấp giá trị mặc định nếu thiếu
+    });
+  };
+
   useEffect(() => {
     const fetchStories = async () => {
       try {
@@ -36,9 +40,7 @@ const LastedPage = () => {
   if (loading) {
     return <LoadingSpinner />;
   }
-  return (
-      <Lasted stories={stories} onSelectStory={handleSelectStory} />
-  );
+  return <LastedComponent stories={stories} onSelectStory={handleSelectStory} />;
 };
 
 export default LastedPage;

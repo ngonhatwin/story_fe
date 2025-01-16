@@ -1,10 +1,11 @@
 "use client";
+//lib
 import React, { useState } from "react";
 import Cookies from "js-cookie";
-import { useRouter } from 'next/navigation';
+//component
 import { HandleLogin } from "@/api/login/HandleLogin";
-import LoginComponent from "@/components/auth/login/login";
 import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
+import LoginComponent from "@/components/auth/login/login";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +13,7 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -23,7 +24,7 @@ const LoginPage = () => {
         const userName = response.data.username;
         Cookies.set("token", accessToken, { expires: 30 });
         Cookies.set("username", userName, { expires: 30 });
-        Cookies.set("id", response.data.id, {expires: 30})
+        Cookies.set("id", response.data.id, { expires: 30 });
         setSuccess(true);
         setError("");
         window.location.href = "/";

@@ -1,14 +1,25 @@
 "use client";
+//page danh sách truyện theo genreId
 import React, { useState, useEffect } from "react";
-import { GetStoryByGenre } from "@/api/story/GetStoryByGenre";
+import { use } from "react";
+//component
 import { useStoryContext } from "@/app/storycontext";
+import { useGenreContext } from "@/app/genrecontext";
+import { FindByGenreComponent } from "@/components/topic/findbygenre";
+import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
+//api
+import { GetStoryByGenre } from "@/api/story/GetStoryByGenre";
+//types
 import { Story } from "@/types/story";
-import { FindByGenre } from "@/components/topic/findbygenre";
-const GenrePage = ({ params }: { params: { id: string } }) => {
+
+const GenrePage = ({ params }: { params: Promise<{ id: string }> }) => {
   const [loading, setLoading] = useState(true);
-  const [stories, setStories] = useState<Story[]>([]); // Sử dụng kiểu Story[]
-  const { selectedStory, setSelectedStory } = useStoryContext();
-  const { id } = params;
+  const [stories, setStories] = useState<Story[]>([]); 
+  const { setSelectedStory } = useStoryContext();
+  const {genreList} = useGenreContext();
+  const { id } = use(params);
+  const genre = genreList.find((item) => item.id === id);
+
   const handleSelectStory = (story: Story) => {
     setSelectedStory({
       ...story,
@@ -16,6 +27,7 @@ const GenrePage = ({ params }: { params: { id: string } }) => {
       authorName: story.authorName || "Unknown", // Cung cấp giá trị mặc định nếu thiếu
     });
   };
+
   useEffect(() => {
     const fetchStoryByGenre = async () => {
       try {
@@ -31,16 +43,23 @@ const GenrePage = ({ params }: { params: { id: string } }) => {
         const errorMessage =
           error instanceof Error ? error.message : "Something went wrong";
         console.error("Failed to fetch storys:", errorMessage);
+      }finally{
+        setLoading(false);
       }
     };
     fetchStoryByGenre();
   }, [id]);
+
+  if (loading) {
+      return <LoadingSpinner />;
+    }
   return (
     <div>
-      <FindByGenre
+      <FindByGenreComponent
+        genreName={genre?.name}
         stories={stories}
         onSelectStory={handleSelectStory}
-      ></FindByGenre>
+      ></FindByGenreComponent>
     </div>
   );
 };

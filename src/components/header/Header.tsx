@@ -1,9 +1,12 @@
 "use client";
+import React, { useEffect, useState } from "react";
+//component
 import HeaderNav from "./navigation";
 import Searching from "./search";
 import NavigationUser from "./navigation-user";
+//lib
 import { cn } from "@/lib/utils";
-import React, { useEffect, useState } from "react";
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {

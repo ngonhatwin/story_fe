@@ -1,21 +1,25 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { getAllStories } from "@/api/story/GetAllStory";
-import { Story } from "@/types/story";
+//Component
 import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
 import { useStoryContext } from "@/app/storycontext";
-import { Hot } from "@/components/topic/hot";
+import { HotComponent } from "@/components/topic/hot";
+//api
+import { getAllStories } from "@/api/story/GetAllStory";
+//types
+import { Story } from "@/types/story";
 const HotPage = () => {
   const [loading, setLoading] = useState(true);
   const [stories, setStories] = useState<Story[]>([]); // Sử dụng kiểu Story[]
-    const { selectedStory, setSelectedStory } = useStoryContext();
-       const handleSelectStory = (story: Story) => {
-          setSelectedStory({
-            ...story,
-            urlImage: story.urlImage || "default_image.jpg", // Cung cấp giá trị mặc định nếu thiếu
-            authorName: story.authorName || "Unknown", // Cung cấp giá trị mặc định nếu thiếu
-          });
-        };
+  const { setSelectedStory } = useStoryContext();
+
+  const handleSelectStory = (story: Story) => {
+    setSelectedStory({
+      ...story,
+      urlImage: story.urlImage || "default_image.jpg", // Cung cấp giá trị mặc định nếu thiếu
+      authorName: story.authorName || "Unknown", // Cung cấp giá trị mặc định nếu thiếu
+    });
+  };
   useEffect(() => {
     const fetchStories = async () => {
       try {
@@ -36,9 +40,7 @@ const HotPage = () => {
   if (loading) {
     return <LoadingSpinner />;
   }
-  return (
-      <Hot stories={stories} onSelectStory={handleSelectStory} />
-  );
+  return <HotComponent stories={stories} onSelectStory={handleSelectStory} />;
 };
 
 export default HotPage;

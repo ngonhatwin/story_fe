@@ -1,10 +1,15 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { StoryAndGenre } from "@/types/storyandgenre";
-import { Button } from "../ui/button";
 import { useState } from "react";
-import Chapter from "../chapter/chapter";
-const StoryDetail: React.FC<{ story: StoryAndGenre }> = ({ story }) => {
+//component
+import { Button } from "../ui/button";
+//lib
+import { cn } from "@/lib/utils";
+//types
+import { StoryAndGenre } from "@/types/storyandgenre";
+
+const StoryDetailComponent: React.FC<{ story: StoryAndGenre }> = ({
+  story,
+}) => {
   const [isClamped, setIsClamped] = useState(true);
 
   const toggleClamp = () => {
@@ -32,7 +37,7 @@ const StoryDetail: React.FC<{ story: StoryAndGenre }> = ({ story }) => {
         <img
           src={story.urlImage || "/default_image.jpg"}
           alt={story.name}
-          className={cn("w-100", "h-full","max-h-96", "mb-4", "rounded")}
+          className={cn("w-100", "h-full", "max-h-96", "mb-4", "rounded")}
         />
       </div>
       <div className={cn("basis-4/5")}>
@@ -88,4 +93,4 @@ const StoryDetail: React.FC<{ story: StoryAndGenre }> = ({ story }) => {
   );
 };
 
-export default StoryDetail;
+export default StoryDetailComponent;

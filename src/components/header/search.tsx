@@ -1,14 +1,18 @@
 "use client";
 import * as React from "react";
 import { useState, useEffect } from "react";
+//component
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { SearchStory } from "@/api/story/SearchStory";
-import { createSlug } from "@/types/slug";
 import { LoadingSpinnerSearch } from "@/components/LoadingSpinner/LoadingSpinnerSearch";
+//api
+import { SearchStory } from "@/api/story/SearchStory";
+//types
+import { CreateSlug } from "@/types/slug";
+import { Story } from "@/types/story";
 const Searching = () => {
   const [searchString, setSearchString] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<Story[]>([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -29,8 +33,6 @@ const Searching = () => {
         setSearchResults([]); // Reset khi không có từ khóa
       }
     }, 400); // Thời gian debouncing (500ms)
-
-    // Hủy bỏ việc gọi API nếu người dùng nhập tiếp
     return () => clearTimeout(timeoutId);
   }, [searchString]); // Chạy lại khi searchString thay đổi
 
@@ -61,7 +63,7 @@ const Searching = () => {
                   className="rounded-lg  border border-black-200 hover:bg-gray-100"
                 >
                   <a
-                    href={`/story/${createSlug(item.name)}`}
+                    href={`/story/${CreateSlug(item.name)}`}
                     className="flex m-2 text-sm font-medium leading-none no-underline hover:text-accent-foreground focus:text-accent-foreground"
                   >
                     {item.urlImage && (

@@ -1,22 +1,31 @@
-import { cn } from "@/lib/utils";
+///Truyện Hot
+///
 import React from "react";
-import { Story } from "@/types/story";
+//component
 import { Container } from "../ui/container";
-import { createSlug } from "@/types/slug";
+//lib
+import { cn } from "@/lib/utils";
 import Link from "next/link";
-interface NominationProps {
+//types
+import { Story } from "@/types/story";
+import { CreateSlug } from "@/types/slug";
+
+interface HotProps {
   stories: Story[];
   onSelectStory: (story: Story) => void;
 }
 
-export const Hot: React.FC<NominationProps> = ({
+export const HotComponent: React.FC<HotProps> = ({
   stories,
   onSelectStory,
 }) => {
   return (
     <div className="flex justify-center">
       <Container className="bg-neutral-500 rounded-bl-lg rounded-br-lg">
-        <h1 className="text-2xl font-bold">Truyện Hot</h1>
+        <h1 className="text-2xl font-bold">
+          <a href="/">Trang chủ /</a>
+          <a>Truyện hot</a>
+        </h1>
 
         <ul className="list-none pl-6">
           {stories.map((story) => (
@@ -66,7 +75,7 @@ export const Hot: React.FC<NominationProps> = ({
                   <div className={cn("")}>
                     <div className={cn("mb-2")}>
                       <Link
-                        href={`/story/${createSlug(story.name)}`}
+                        href={`/story/${CreateSlug(story.name)}`}
                         className={cn(
                           "text-base",
                           "font-semibold",

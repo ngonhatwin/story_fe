@@ -1,9 +1,12 @@
 "use client";
-import UserCompo from "@/components/user-com/user-compo";
 import React, { useState, useEffect } from "react";
-import { GetInfoUser } from "@/api/user/GetInfoUser";
-import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
 import Cookies from "js-cookie";
+//component
+import UserComponent from "@/components/user/user";
+import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
+//api
+import { GetInfoUser } from "@/api/user/GetInfoUser";
+//types
 import { User } from "@/types/user";
 const UserPage = () => {
   const [infoUser, setInfoUser] = useState<User | undefined>(undefined);
@@ -36,7 +39,7 @@ const UserPage = () => {
   }
   return (
     <div>
-      <UserCompo infouser={infoUser} />
+      <UserComponent infoUser={infoUser} />
     </div>
   );
 };

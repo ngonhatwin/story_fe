@@ -1,18 +1,17 @@
 "use client";
-
+//lib
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+//component
 import { LoadingSpinner } from "@/components/LoadingSpinner/LoadingSpinner";
 
 const LogoutPage = () => {
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     // Xóa cookies
     Cookies.remove("id");
     Cookies.remove("token");
     Cookies.remove("username");
-
     // Chuyển hướng sau khi xóa xong
     setTimeout(() => {
       setLoading(false);

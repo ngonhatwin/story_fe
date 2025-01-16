@@ -1,4 +1,4 @@
-export const createSlug = (name: string) => {
+export const CreateSlug = (name: string) => {
     return name
       .toLowerCase()
       .replace(/á|à|ả|ã|ạ|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/g, 'a')

@@ -1,18 +1,15 @@
 "use client"; // Bắt buộc với React hooks trong Next.js
-
 import React, { createContext, useContext, useState } from "react";
 import { Story } from "@/types/story";
-
-  
 // Định nghĩa kiểu dữ liệu cho Context
 interface StoryContextType {
   selectedStory: Story | null;
   setSelectedStory: React.Dispatch<React.SetStateAction<Story | null>>;
 }
-
-// Tạo Context
-const StoryContext = createContext<StoryContextType | undefined>(undefined);
-
+const StoryContext = createContext<StoryContextType>({
+  selectedStory: null,
+  setSelectedStory: () => {},
+});
 // Hook để sử dụng Context
 export const useStoryContext = () => {
   const context = useContext(StoryContext);
@@ -21,7 +18,6 @@ export const useStoryContext = () => {
   }
   return context;
 };
-
 // Provider bọc toàn bộ ứng dụng
 export const StoryProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedStory, setSelectedStory] = useState<Story | null>(null);
